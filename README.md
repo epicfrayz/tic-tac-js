@@ -20,9 +20,9 @@
 
 # Скриншоты
 >
-> ![Screen 1](screens/img_1.png)
+> ![Screen 1](screen/img_1.png)
 >
-> ![Screen 21](screens/img_2.png)
+> ![Screen 21](screen/img_2.png)
 >
-> ![Screen 2](screens/img_2.png)
+> ![Screen 2](screen/img_2.png)
 >
