@@ -24,5 +24,5 @@
 >
 > ![Screen 21](screen/img_2.png)
 >
-> ![Screen 2](screen/img_2.png)
+> ![Screen 2](screen/img_3.png)
 >
