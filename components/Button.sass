@@ -1,0 +1,85 @@
+.btn
+  // Стиль кнопок
+  width: 100px
+  height: 100px
+  padding: 0px
+  margin-bottom: 10px
+  margin-right: 10px
+  background: #9F9F9F
+  border: 1px solid #000000
+  box-sizing: border-box
+  border-radius: 25px
+
+  font-style: normal
+  font-weight: bold
+  font-size: 36px
+  line-height: 10px
+  color: #000000
+
+  position: relative
+  cursor: default
+  transition: 0.5s
+
+  // Снятие margin с каждой третьей кнопки
+  &:nth-child(3n + 3)
+    margin-right: 0px
+
+  // Наведение
+  &:hover
+    box-shadow: 0px 0px 10px rgba(0,0,0, 0.5)
+
+  // Кликабельная кнопка
+  &.clicked
+    cursor: pointer
+
+  // Расположение контента
+  &::before
+    font-size: 64px
+
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+
+  // Кнопка новой игры
+  &.refresh
+    background-color: #D7F4D7
+    border-color: #87DE87
+    color: #87DE87
+
+    &:before
+      content: "\21BB"
+
+  // Кнопка крестика
+  &.x-value
+    background-color: #FFD5D5
+    border-color: #FF8080
+    color: #FF8080
+
+    &:before
+      content: "\2716"
+
+  // Кнопка нолика
+  &.o-value
+    background-color: #FFF6D5
+    border: 1px solid #FFDD55
+    color: #FFDD55
+
+    &:before
+      content: "\39F"
+
+  // Кнопка нолика
+  &.ok
+    background-color: #87DE87
+    border-color: #444
+    color: #444
+
+
+    width: 60px
+    height: 60px
+
+    font-size: 16px
+
+    &:before
+      content: "Ok"
+      font-size: 16px
