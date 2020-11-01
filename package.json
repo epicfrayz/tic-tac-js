@@ -4,7 +4,9 @@
   "description": "Крестики нолики на JavaScript с использованием REACT",
   "main": "index.tsx",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "build-dev": "webpack",
+    "build": "webpack --prod"
   },
   "repository": {
     "type": "git",
