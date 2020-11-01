@@ -1,43 +1,52 @@
 import React, { useState } from "react";
-import { checkWin, getPlayer } from "../lib/TicTac";
+import { TicTacGame } from "../lib/TicTac";
 import { ButtonComponent } from "./Button";
 import { GamePopupComponent } from "./GamePopup";
 import { TViewFC } from "./Game";
 
 import "./GameView.sass"
-import { statStore } from "./MenuView";
+
+export const game = new TicTacGame()
 
 export const GameViewComponent: TViewFC = ({ setView }) => {
-  const [state, setState] = useState([...new Uint8Array(9)])
   const [win, setWin] = useState<number>(null)
-  const player = getPlayer(state)
+  const [state] = game.useGame()
+
+  const checkWin = () => {
+    const findWin = game.checkWin()
+
+    if (findWin !== null) {
+      if (findWin == 1)
+        game.addWin()
+
+      if (findWin == 2)
+        game.addDead()
+
+      setWin(findWin)
+    }
+  }
+
+  if(game.player == 2 && win == null)
+    setTimeout(() => {
+      const int = game.getAIStep()
+      game.setValue(int)
+      checkWin()
+    }, Math.random() * 1000 + 500)
 
   const handleClick = (index = -1) => {
     if (win)
       return null
 
-    if (typeof state[index] == 'undefined')
+    if(game.player != 1)
       return null
 
-    const newState = state.map((e, i) =>
-      i == index ? player : e)
+    game.setValue(index)
+    checkWin()
+  }
 
-    const findWin = checkWin(newState)
-
-    let { wins, deads } = statStore.get()
-
-    if (findWin !== null) {
-      if (findWin == 1)
-        wins += 1
-
-      if (findWin == 2)
-        deads += 1
-
-      statStore.set({ wins, deads })
-      setWin(findWin)
-    }
-
-    setState(newState)
+  const out = () => {
+    setView('menu')
+    game.resetGame()
   }
 
   return (
@@ -48,7 +57,8 @@ export const GameViewComponent: TViewFC = ({ setView }) => {
           onClick={!e ? () => handleClick(i) : null}
           type={e ? (e == 1 ? 'x-value' : 'o-value') : 'default'} />
       )}
-      <GamePopupComponent onClick={() => setView('menu')} win={win} />
+
+      <GamePopupComponent onClick={out} win={win} />
     </div>
   )
 }
