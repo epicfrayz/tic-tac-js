@@ -1,17 +1,10 @@
-import React, { FC } from "react";
-import { createShareStore } from "../lib/SharedStore";
+import React from "react";
 import { ButtonComponent } from "./Button";
 import { TViewFC } from "./Game";
-import { GameViewComponent } from "./GameView";
-
-export const statStore = createShareStore({
-  wins: 0,
-  deads: 0
-}, 'user-stat')
+import { game } from "./GameView";
 
 export const MenuViewComponent: TViewFC = ({ setView }) => {
-  const { useState: useStat } = statStore
-  const [{ wins, deads }] = useStat()
+  const [{ wins, deads }] = game.useStat()
 
   const refresh = () => {
     setView('game')
