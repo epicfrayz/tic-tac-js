@@ -14,7 +14,7 @@ export type TViewMode = keyof typeof ViewModels
 export type TViewFC = FC<{setView(v: TViewMode): void}>
 
 export const GameComponent = () => {
-  const [model, setView] = useState<TViewMode>('menu')
+  const [model, setView] = useState<TViewMode>('game')
   const View = ViewModels[model]
 
   return (
