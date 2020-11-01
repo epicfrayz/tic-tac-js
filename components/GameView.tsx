@@ -9,7 +9,7 @@ import { statStore } from "./MenuView";
 
 export const GameViewComponent: TViewFC = ({ setView }) => {
   const [state, setState] = useState([...new Uint8Array(9)])
-  const [win, setWin] = useState(0)
+  const [win, setWin] = useState<number>(null)
   const player = getPlayer(state)
 
   const handleClick = (index = -1) => {
