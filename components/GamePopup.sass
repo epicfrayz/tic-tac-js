@@ -20,5 +20,21 @@
 
   text-align: center
 
+  animation: show 2s linear
+
   &.win
     color: #070
+
+@keyframes show
+  0%
+    opacity: 0
+    transform: scale(0)
+
+  70%
+    opacity: 0
+    transform: scale(0)
+
+  100%
+    opacity: 1
+    transform: scale(1)
+    
