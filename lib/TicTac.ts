@@ -52,7 +52,7 @@ export const checkWin = (s: number[]) => {
   if(findWin)
     return +findWin[0]
 
-  if(typeof s.find(e=> e==0) !== 'number')
+  if(!s.filter(e => e == 0).length)
     return 0
 
   return null
