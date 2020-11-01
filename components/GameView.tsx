@@ -26,10 +26,11 @@ export const GameViewComponent: TViewFC = ({ setView }) => {
 
     let { wins, deads } = statStore.get()
 
-    if (findWin) {
+    if (findWin !== null) {
       if (findWin == 1)
         wins += 1
-      else
+
+      if (findWin == 2)
         deads += 1
 
       statStore.set({ wins, deads })
