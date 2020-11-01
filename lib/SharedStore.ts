@@ -24,7 +24,7 @@ export function createShareStore<T = any>(initialState?: T, storage = '') {
   let initial = true
   let listeners: Dispatch<T>[] = [] 
 
-  function getNew(newState: T): T {
+  function getNew(newState: Partial<T>): Partial<T> {
     return copy(newState)
   }
 
@@ -52,7 +52,7 @@ export function createShareStore<T = any>(initialState?: T, storage = '') {
       listeners.splice(index, 1)
   }
 
-  function setState(newState: T) {
+  function setState(newState: Partial<T>) {
     if(initial) {
       initial = false
 
@@ -61,7 +61,11 @@ export function createShareStore<T = any>(initialState?: T, storage = '') {
           && !Array.isArray(newState)
     }
 
-    state = getNew(newState)
+    if(extend) 
+      state = {...state, ...getNew(newState)}    
+    else
+      state = getNew(newState) as any
+      
     saveStorage(storage, state)
 
     for(let dispatcher of listeners)
