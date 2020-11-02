@@ -145,11 +145,10 @@ export class TicTacGame {
       )
     }
 
-    for (let a = 0; a < 2; a++) {
-      rows.push(
-        this.getDiagonalRow(!!a)
-      )
-    }
+    rows.push(
+      this.getDiagonalRow(false),
+      this.getDiagonalRow(true))
+    
 
     return rows
   }
