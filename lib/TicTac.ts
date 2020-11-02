@@ -17,7 +17,7 @@ export class TicTacGame {
   }, 'user-stat')
 
   get winRow() {
-    return this.#winRow
+    return this.#winRow || []
   }
 
   get player() {
@@ -66,8 +66,7 @@ export class TicTacGame {
       .find(([a, b, c]) =>
         regExp.test(`${a.v}${b.v}${c.v}`))
 
-    this.#winRow = winRow || []
-    return winRow
+    return this.#winRow = winRow
   }
 
   getIndexOfVec(x = 0, y = 0) {
@@ -155,6 +154,7 @@ export class TicTacGame {
     this.#map.forEach(
       (e, i, t) => t[i] = 0)
 
+    this.#winRow = null
     this.setValue()
   }
 
