@@ -150,6 +150,13 @@ export class TicTacGame {
     this.#store.set([...this.#map])
   }
 
+  isNotWin(index = -1) {
+    const {winRow} = this
+    
+    return winRow.length &&
+      !winRow.find(e => e.i == index)
+  }
+
   resetGame() {
     this.#map.forEach(
       (e, i, t) => t[i] = 0)
