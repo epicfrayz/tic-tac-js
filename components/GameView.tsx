@@ -31,7 +31,7 @@ export const GameViewComponent: TViewFC = ({ setView }) => {
       const int = game.getAIStep()
       game.setValue(int)
       checkWin()
-    }, Math.random() * 1000 + 500)
+    }, Math.random() * 300 + 200)
 
   const handleClick = (index = -1) => {
     if (win)
