@@ -49,10 +49,14 @@ export const GameViewComponent: TViewFC = ({ setView }) => {
     game.resetGame()
   }
 
+  const select = game.winRow
+    .map(e => e.i)
+
   return (
     <div className="game-container-grid">
       {state.map((e, i) =>
         <ButtonComponent
+          opacity={(select.length && select.indexOf(i)) == -1 ? 0.2 : 1}
           key={`btn-${i}`}
           onClick={!e ? () => handleClick(i) : null}
           type={e ? (e == 1 ? 'x-value' : 'o-value') : 'default'} />
