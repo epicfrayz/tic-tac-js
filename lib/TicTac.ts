@@ -20,6 +20,17 @@ export class TicTacGame {
     return this.#winRow || []
   }
 
+  get win() {
+    if (this.#map.indexOf(0) == -1)
+      return 0
+
+    const [win] = this.winRow
+
+    if (!win) return null
+
+    return win.v
+  }
+
   get player() {
     const xValue = this.getCountOfValue(1)
 
@@ -143,16 +154,24 @@ export class TicTacGame {
     return rows
   }
 
-  setValue(index = -1, value = 0) {
+  setValue(index = this.getAIStep(), value = this.player) {
     if (typeof this.#map[index] != 'undefined')
-      this.#map[index] = value || this.player
+      this.#map[index] = value
+
+    this.checkWin()
+
+    if (this.win == 1)
+      this.addWin()
+
+    if (this.win == 2)
+      this.addDead()
 
     this.#store.set([...this.#map])
   }
 
   isNotWin(index = -1) {
-    const {winRow} = this
-    
+    const { winRow } = this
+
     return winRow.length &&
       !winRow.find(e => e.i == index)
   }
@@ -162,7 +181,7 @@ export class TicTacGame {
       (e, i, t) => t[i] = 0)
 
     this.#winRow = null
-    this.setValue()
+    this.setValue(-1)
   }
 
   addWin() {
