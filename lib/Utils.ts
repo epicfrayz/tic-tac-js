@@ -1,15 +1,3 @@
-export function delay(n = 0) {
-  return new Promise<void>(r => setTimeout(r, n))
-}
-
-export function firstUpper(input: string) {
-  return input.substr(0, 1).toUpperCase() + input.substr(1)
-}
-
-export function filterLength<T>(array: T[], value: T) {
-  return array.filter(e => e==value).length
-}
-
 export function copy<T = any>(obj: T, links = [], props = []): T {
   if(!obj) return obj
 
